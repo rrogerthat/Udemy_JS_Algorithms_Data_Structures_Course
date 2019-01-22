@@ -3,24 +3,24 @@
 // fib(28) // 317811
 // fib(35) // 9227465
 
-//had to look up answer
+//popular solution from online answer:
 function fib(n){
     if (n <= 2) return 1;
     return fib(n-1) + fib(n-2);
 }
 
-//my solution returns undefined although console.log returns correct outputs
+//my solution (1/21/2019 updated)
 function fib(n){
     let arr = [1,1];
     let pointer1 = 0;
     let pointer2 = 1;
+    let result;
     
     function helper(n) {
       arr.push(arr[pointer1] + arr[pointer2]);
-      console.log(arr);
       if (arr.indexOf(arr[arr.length - 1]) === n-1) {
-          console.log(arr[n-1]);    //outputs correct
-          return arr[n-1];          //returns undefined
+          result = arr[n-1];  //since cannot return here as we have no control over it in recursion
+          return;
       }
       else {
           pointer1++;
@@ -29,4 +29,6 @@ function fib(n){
       }
     }
     helper(n);
+
+    return result;
   }
